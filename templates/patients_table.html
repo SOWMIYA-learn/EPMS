@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-4">
+  <h2 class="text-xl font-semibold text-indigo-700">Patients</h2>
+  <form method="get" class="flex gap-2">
+    <input name="q" value="{{ q }}" class="px-3 py-2 border rounded" placeholder="Search name/id/ailment">
+    <button class="bg-indigo-600 text-white px-3 py-2 rounded">Search</button>
+  </form>
+</div>
+
+<div class="bg-white rounded shadow overflow-auto">
+  <table class="min-w-full">
+    <thead class="bg-indigo-50 text-left">
+      <tr>
+        <th class="px-4 py-2">Patient ID</th>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Age</th>
+        <th class="px-4 py-2">Ailment</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in patients %}
+      <tr class="border-t">
+        <td class="px-4 py-2">{{ p.patient_id }}</td>
+        <td class="px-4 py-2">{{ p.name }}</td>
+        <td class="px-4 py-2">{{ p.age or 'N/A' }}</td>
+        <td class="px-4 py-2">{{ p.ailment or 'N/A' }}</td>
+        <td class="px-4 py-2">
+          <a href="{{ url_for('view_patient', id=p.id) }}" class="text-indigo-600 mr-2">View</a>
+          <a href="{{ url_for('edit_patient', id=p.id) }}" class="text-yellow-600 mr-2">Edit</a>
+          <form action="{{ url_for('delete_patient', id=p.id) }}" method="post" style="display:inline" onsubmit="return confirm('Delete patient?')">
+            <button class="text-red-600">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if not patients %}
+      <tr><td colspan="5" class="p-4 text-center text-gray-500">No patients found.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
