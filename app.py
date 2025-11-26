@@ -261,5 +261,5 @@ def report_view(report_id):
 # ---------------------------
 # Run App
 # ---------------------------
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+    #app.run(debug=True)
