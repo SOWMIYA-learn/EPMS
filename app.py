@@ -7,7 +7,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from models import db, User, Patient, Report
 import qrcode
 import io
-import pandas as pd
+
 from datetime import datetime
 from pathlib import Path
 
