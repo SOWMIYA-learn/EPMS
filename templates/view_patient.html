@@ -1,50 +1,58 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
-  <div class="flex justify-between items-start">
-    <div>
-      <h2 class="text-2xl font-semibold text-indigo-700">{{ patient.name }}</h2>
-      <p class="text-sm text-gray-500">{{ patient.patient_id }}</p>
+<div class="max-w-3xl mx-auto mt-6 bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Patient Details</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+            <p><strong>Patient ID:</strong> {{ patient.patient_id }}</p>
+            <p><strong>Name:</strong> {{ patient.name }}</p>
+            <p><strong>Age:</strong> {{ patient.age }}</p>
+            <p><strong>Gender:</strong> {{ patient.gender }}</p>
+            <p><strong>Ailment:</strong> {{ patient.ailment }}</p>
+            <p><strong>Contact:</strong> {{ patient.contact }}</p>
+            <p><strong>Address:</strong> {{ patient.address }}</p>
+        </div>
+        <div class="flex justify-center items-center">
+            <div class="border p-4 rounded-md bg-gray-50">
+                <p class="text-center font-semibold mb-2">QR Code</p>
+                <img src="{{ qr }}" alt="Patient QR Code" class="w-48 h-48 mx-auto">
+            </div>
+        </div>
     </div>
-    <div>
-      <img src="{{ qr }}" alt="QR" class="w-24 h-24 rounded border">
-    </div>
-  </div>
 
-  <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
-    <div><strong>Age:</strong> {{ patient.age or 'N/A' }}</div>
-    <div><strong>Gender:</strong> {{ patient.gender or 'N/A' }}</div>
-    <div><strong>Ailment:</strong> {{ patient.ailment or 'N/A' }}</div>
-    <div><strong>Contact:</strong> {{ patient.contact or 'N/A' }}</div>
-    <div class="md:col-span-2"><strong>Address:</strong> {{ patient.address or 'N/A' }}</div>
-  </div>
-
-  <div class="mt-4 flex gap-3">
-    <a href="{{ url_for('edit_patient', id=patient.id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</a>
-    <form action="{{ url_for('delete_patient', id=patient.id) }}" method="post" onsubmit="return confirm('Delete?')">
-      <button class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
-    </form>
-    <a href="{{ url_for('patients_table') }}" class="ml-auto text-indigo-600">Back to list</a>
-  </div>
-
-  <hr class="my-4">
-
-  <h3 class="text-lg font-semibold mb-2">Reports</h3>
-  <form action="{{ url_for('upload_report', patient_id=patient.id) }}" method="post" enctype="multipart/form-data">
-    <input type="file" name="report" accept=".pdf,.png,.jpg,.jpeg" required>
-    <button class="bg-indigo-600 text-white px-3 py-1 rounded ml-2">Upload</button>
-  </form>
-
-  <ul class="mt-3 space-y-2">
-    {% for r in patient.reports %}
-      <li class="flex items-center gap-3">
-        <a href="{{ url_for('uploads', filename=r.filename) }}" class="text-indigo-600">{{ r.filename }}</a>
-        <a href="{{ url_for('report_view', report_id=r.id) }}" class="text-sm text-gray-500 ml-2">View</a>
-      </li>
+    <h2 class="text-xl font-semibold mb-2">Uploaded Reports</h2>
+    {% if patient.reports %}
+        <ul class="mb-4">
+            {% for r in patient.reports %}
+                <li class="flex justify-between items-center bg-gray-100 p-2 rounded mb-2">
+                    <span>{{ r.filename }}</span>
+                    <div>
+                        <a href="{{ url_for('uploads', filename=r.filename) }}" target="_blank" class="text-blue-600 mr-2">View</a>
+                        <form action="{{ url_for('delete_report', report_id=r.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="text-red-600" onclick="return confirm('Delete this report?');">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     {% else %}
-      <li class="text-gray-500">No reports uploaded.</li>
-    {% endfor %}
-  </ul>
+        <p class="mb-4 text-gray-500">No reports uploaded yet.</p>
+    {% endif %}
 
+    <h2 class="text-xl font-semibold mb-2">Upload New Report</h2>
+    <form action="{{ url_for('upload_report', patient_id=patient.id) }}" method="POST" enctype="multipart/form-data" class="flex items-center gap-2 mb-4">
+        <input type="file" name="report" class="border p-2 rounded">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Upload</button>
+    </form>
+
+    <div class="flex gap-2">
+        <a href="{{ url_for('edit_patient', id=patient.id) }}" class="bg-yellow-400 text-white px-4 py-2 rounded">Edit</a>
+        <form action="{{ url_for('delete_patient', id=patient.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</button>
+        </form>
+        <a href="{{ url_for('patients_table') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Back to Patients</a>
+    </div>
 </div>
 {% endblock %}
