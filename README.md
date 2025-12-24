@@ -1,106 +1,142 @@
-# **Electronic Patient Management System (EPMS)**
+🏥 Electronic Patient Management System (EPMS)
 
-A lightweight and efficient web-based system for managing patient records, appointments, prescriptions, and hospital workflows. The EPMS project simplifies healthcare data handling and provides a structured, user-friendly interface for doctors, nurses, and administrators.
+A lightweight and efficient web-based Electronic Patient Management System (EPMS) developed using Python Flask.
+This system enables secure digital management of patient records, report uploads, and QR-code–based public patient access, providing a clean and user-friendly interface for healthcare administrators.
 
----
+⭐ Features
+🧑‍⚕️ Patient Registration & Management
 
-## ⭐ **Features**
+Add new patient records
 
-* **Patient Registration & Management**
-  Add, update, delete, and search patient details efficiently.
+Edit and update patient details
 
-* **Appointment Scheduling**
-  Manage doctor appointments and track upcoming visits.
+View individual patient information
 
-* **Medical Records & Reports**
-  Store and view patient medical history, prescriptions, and diagnostic information.
+Display all patients in a structured table
 
-* **Dashboard Overview**
-  Quick insights into total patients, recent visits, and system activity.
+📄 Medical Records & Reports
 
-* **QR Code / Unique Patient ID** *(if applicable)*
-  Easily identify and retrieve patient records.
+Upload and store patient reports/documents
 
-* **Secure Login System**
-  Authentication to protect sensitive health information.
+View uploaded files securely
 
----
+📱 QR Code / Public Patient Access
 
-## 🛠️ **Tech Stack**
+Automatically generate QR code for each patient
 
-| Component    | Technology                                   |
-| ------------ | -------------------------------------------- |
-| **Frontend** | HTML, CSS, JavaScript                        |
-| **Backend**  | Python (Flask/Django) *(whichever you used)* |
-| **Database** | MySQL / SQLite                               |
-| **Other**    | QR Code Generator, Bootstrap UI              |
+Scan QR code to view public patient details on mobile
 
-*(If you want, I can customize this exactly based on your project files.)*
+Public view shows limited, non-sensitive information
 
----
+🔐 Secure Login System
 
-## 📁 **Project Structure**
+User authentication with login and registration
 
-```
+Protected routes for internal access
+
+📊 Dashboard Overview
+
+Quick access to patient records
+
+Simple and intuitive navigation
+
+🛠️ Tech Stack
+Component	Technology
+Frontend	HTML5, CSS3, JavaScript
+Backend	Python (Flask)
+Database	SQLite
+Libraries	Flask-SQLAlchemy, QRCode, Pillow
+Tools	VS Code, Git
+📁 Project Structure
 EPMS/
- ├── static/           # CSS, JS, images
- ├── templates/        # HTML pages
- ├── app.py            # Main backend application
- ├── database.db       # (or .sql file)
- ├── README.md         # Project documentation
- └── requirements.txt  # Python dependencies
-```
+├── app.py                # Main Flask application
+├── models.py             # Database models
+├── patient.db            # SQLite database
+├── .gitignore
+│
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── main.js
+│
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── add_patient.html
+│   ├── edit_patient.html
+│   ├── view_patient.html
+│   ├── patients_table.html
+│   ├── public_patient.html
+│   └── layout.html
+│
+├── uploads/              # Uploaded patient files
+├── venv/                 # Virtual environment
+└── README.md             # Project documentation
 
----
-
-## 🚀 **How to Run the Project**
-
-### **1. Clone the Repository**
-
-```sh
+🚀 How to Run the Project
+1️⃣ Clone the Repository
 git clone https://github.com/SOWMIYA-learn/EPMS.git
 cd EPMS
-```
 
-### **2. Install Dependencies**
+2️⃣ Create & Activate Virtual Environment
+python -m venv venv
 
-```sh
-pip install -r requirements.txt
-```
 
-### **3. Run the Application**
+Windows
 
-```sh
+venv\Scripts\activate
+
+
+Linux / macOS
+
+source venv/bin/activate
+
+3️⃣ Install Dependencies
+pip install flask flask-sqlalchemy qrcode pillow
+
+4️⃣ Run the Application
 python app.py
-```
 
-### **4. Open in Browser**
-
-```
+5️⃣ Open in Browser
 http://127.0.0.1:5000/
-```
 
----
+📌 QR Code Functionality
 
-## 📌 **Future Enhancements**
+Each patient record generates a unique QR code
 
-* Doctor-specific dashboards
-* Automatic prescription generator
-* SMS/Email appointment reminders
-* Role-based access (Receptionist, Doctor, Admin)
-* Analytics & reports module
+Scanning the QR opens a public patient details page
 
----
+Optimized for mobile viewing
 
-## 🤝 **Contributions**
+Sensitive information remains protected
+
+📌 Future Enhancements
+
+Role-based access control (Admin, Doctor, Staff)
+
+Cloud deployment (Render / AWS)
+
+Advanced patient search and filtering
+
+Appointment scheduling module
+
+Email / SMS notifications
+
+Analytics and reporting dashboard
+
+🤝 Contributions
 
 Contributions are welcome!
-Feel free to fork the repository and submit pull requests.
+Feel free to fork this repository, improve features, and submit pull requests.
 
----
+👩‍💻 Author
 
-## 📄 **License**
+Sowmiya S
+Second Year ECE | Aspiring IT Professional
+Interests: Python, Web Development, AI
 
-This project is released under the MIT License.
+📄 License
 
----
+This project is released under the MIT License and is intended for educational and learning purposes.
