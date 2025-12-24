@@ -47,31 +47,31 @@ This project is designed as an academic and portfolio-ready healthcare applicati
 
 ## 📁 Project Structure
 EPMS/
-├── app.py # Main Flask application
-├── models.py # Database models
-├── patient.db # SQLite database
+├── app.py                # Main Flask application
+├── models.py             # Database models
+├── patient.db            # SQLite database
 ├── .gitignore
 │
 ├── static/
-│ ├── css/
-│ │ └── styles.css
-│ └── js/
-│ └── main.js
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── main.js
 │
 ├── templates/
-│ ├── index.html
-│ ├── login.html
-│ ├── register.html
-│ ├── add_patient.html
-│ ├── edit_patient.html
-│ ├── view_patient.html
-│ ├── patients_table.html
-│ ├── public_patient.html
-│ └── layout.html
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── add_patient.html
+│   ├── edit_patient.html
+│   ├── view_patient.html
+│   ├── patients_table.html
+│   ├── public_patient.html
+│   └── layout.html
 │
-├── uploads/ # Uploaded patient reports
-├── venv/ # Virtual environment
-└── README.md # Project documentation
+├── uploads/              # Uploaded patient reports
+├── venv/                 # Virtual environment
+└── README.md             # Project documentation
 
 
 ---
@@ -79,50 +79,49 @@ EPMS/
 ## 🚀 How to Run the Project
 
 ### 1️⃣ Clone the Repository
-```bash
+
 git clone https://github.com/SOWMIYA-learn/EPMS.git
 cd EPMS
 
-## 2️⃣ Create & Activate Virtual Environment
-
-Create a virtual environment:
-```bash
+### 2️⃣ Create & Activate Virtual Environment
 python -m venv venv
 
-Activate the virtual environment:
-**Windows**
-```bash
+### Windows
+
 venv\Scripts\activate
-**Linux / macOS**
-```bash
+
+### Linux / macOS
+
 source venv/bin/activate
 
-## 3️⃣ Install Dependencies
-```bash
+### 3️⃣ Install Dependencies
 pip install flask flask-sqlalchemy qrcode pillow
 
-## 4️⃣ Run the Application
-```bash
+### 4️⃣ Run the Application
 python app.py
 
-## 5️⃣ Open in Browser
-```cpp
+### 5️⃣ Open in Browser ###
 http://127.0.0.1:5000/
 
-👩‍💻 Author
+---
+
+### 📌 Future Enhancements ##
+
+           Role-based access control (Admin, Doctor, Staff)
+           Appointment scheduling module
+           Cloud deployment (Render / AWS)
+           Advanced patient search and filtering
+           Email / SMS notifications
+           Analytics and reporting dashboard
+---
+### 👩‍💻 Author
 
 Sowmiya S
 
-📄 License
+---
+### 📄 License
 
 This project is released under the MIT License and is intended for educational and learning purposes.
-
-
-
-
-
-
-
 
 
 
